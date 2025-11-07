@@ -1,0 +1,57 @@
+﻿@model VM.LoanDetailsVM
+@{
+    ViewData["Title"] = "Loan Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/js/Loan/Loan.js"></script>
+
+<h4 class="mb-4 h5 mt-5">Loan Information</h4>
+
+<form asp-action="LoanDetails">
+
+    <div class="row">
+        <div class="mb-3 col-md-4">
+            <label asp-for="LoanAmount" class="form-label">Loan Amount</label>
+            <input type="text" placeholder="Loan Amount" class="form-control" asp-for="LoanAmount" />
+            <span asp-validation-for="LoanAmount" class="text-danger font-weight-bold"></span>
+        </div>
+        <div class="mb-3 col-md-4">
+            <label asp-for="TenureBy" class="form-label">Tenure By</label>
+            <select class="form-select" asp-for="TenureBy" id="tenureBy">
+                <option selected>--Select--</option>
+                <option value="W" selected>Week</option>
+                <option value="M">Month</option>
+            </select>
+            <span asp-validation-for="TenureBy" class="text-danger font-weight-bold"></span>
+        </div>
+        <div class="mb-3 col-md-4">
+            <label asp-for="Installments" class="form-label">Installments</label>
+            <input type="text" placeholder="Installments" class="form-control" asp-for="Installments" id="txtInstallments"/>
+            <span asp-validation-for="Installments" class="text-danger font-weight-bold"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="mb-3 col-md-4">
+            <label asp-for="EMIAmount" class="form-label">EMI Amount</label>
+            <input type="text" placeholder="EMI Amount" class="form-control" asp-for="EMIAmount" />
+            <span asp-validation-for="EMIAmount" class="text-danger font-weight-bold"></span>
+        </div>
+        <div class="mb-3 col-md-4">
+            <label asp-for="IssueDate" class="form-label">Issue Date</label>
+            <input type="text" placeholder="Issue Date" class="form-control flatpickr" asp-for="IssueDate" />
+            <span asp-validation-for="IssueDate" class="text-danger font-weight-bold"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="mb-3 col-md-4">
+            <input type="submit" value="Prev" name="btnPrev" class="btn btn-info" />
+        </div>
+        <div class="mb-3 col-md-4">
+            <input type="submit" value="Next" name="btnNext" class="btn btn-primary" />
+        </div>
+    </div>
+
+</form>

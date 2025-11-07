@@ -1,0 +1,93 @@
+﻿@model VM.BankDetailsVM
+@{
+    ViewData["Title"] = "BankDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/js/Bank/Bank.js"></script>
+
+
+<h4 class="mb-4 h5 mt-5">Bank Information</h4>
+
+<form asp-action="BankDetails">
+
+    <div class="row">
+        <div class="mb-3 col-md-4">
+            <label asp-for="ModeOfPayment" class="form-label">Mode Of Payment</label>
+            <select class="form-select" asp-for="ModeOfPayment" id="modeOfPayment">
+                <option value="UPI" selected>UPI Payment</option>
+                <option value="BANK">Bank Transfer</option>
+            </select>
+            <span asp-validation-for="ModeOfPayment" class="text-danger font-weight-bold"></span>
+        </div>
+    </div>
+
+    <div class="row" id="divUPI">
+        <div class="mb-3 col-md-4">
+            <label asp-for="UPIType" class="form-label">UPI Type</label>
+            <select class="form-select" asp-for="UPIType">
+                <option value="" selected>--Select--</option>
+                <option value="GPAY">G-Pay</option>
+                <option value="PHONEPAY">PhonePe</option>
+                <option value="PAYTM">Paytm</option>
+                <option value="PAYZAPP">PayZapp</option>
+            </select>
+            <span id="errUPIType" class="text-danger font-weight-bold"></span>
+        </div>
+        <div class="mb-3 col-md-4">
+            <label asp-for="UPIMobileNumber" class="form-label">UPI Mobile Number</label>
+            <input type="text" placeholder="UPI Mobile Number" class="form-control" asp-for="UPIMobileNumber" />
+            <span id="errUPIMobileNumber" class="text-danger font-weight-bold"></span>
+        </div>
+    </div>
+
+    <div id="divBank">
+        <div class="row">
+            <div class="mb-3 col-md-4">
+                <label asp-for="BankName" class="form-label">Bank Name</label>
+                <input type="text" placeholder="Bank Name" class="form-control" asp-for="BankName" />
+                <span id="errBankName" class="text-danger font-weight-bold"></span>
+            </div>
+            <div class="mb-3 col-md-4">
+                <label asp-for="AccountType" class="form-label">Account Type</label>
+                <select class="form-select" asp-for="AccountType">
+                    <option value="CURRENT">Current</option>
+                    <option value="SAVINGS" selected>Savings</option>
+                </select>
+                <span id="errAccountType" class="text-danger font-weight-bold"></span>
+            </div>
+            <div class="mb-3 col-md-4">
+                <label asp-for="AccountNumber" class="form-label">Account Number</label>
+                <input type="text" placeholder="Account Number" class="form-control" asp-for="AccountNumber" />
+                <span id="errAccountNumber" class="text-danger font-weight-bold"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="mb-3 col-md-4">
+                <label asp-for="AccountHolderName" class="form-label">Account Holder Name</label>
+                <input type="text" placeholder="Account Holder Name" class="form-control" asp-for="AccountHolderName" />
+                <span id="errAccountHolderName" class="text-danger font-weight-bold"></span>
+            </div>
+            <div class="mb-3 col-md-4">
+                <label asp-for="IFSCCode" class="form-label">IFSC Code</label>
+                <input type="text" placeholder="IFSC Code" class="form-control" asp-for="IFSCCode" />
+                <span id="errIFSCCode" class="text-danger font-weight-bold"></span>
+            </div>
+            <div class="mb-3 col-md-4">
+                <label asp-for="AccountRegisterMobile" class="form-label">Account Register Mobile</label>
+                <input type="text" placeholder="Account Register Mobile" class="form-control" asp-for="AccountRegisterMobile" />
+                <span id="errAccountRegisterMobile" class="text-danger font-weight-bold"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="mb-3 col-md-6">
+            <input type="submit" value="Prev" name="btnPrev" class="btn btn-info" />
+        </div>
+        <div class="mb-3 col-md-6">
+            <input type="submit" value="Next" name="btnNext" class="btn btn-primary" id="btnSubmit" />
+        </div>
+    </div>
+
+</form>

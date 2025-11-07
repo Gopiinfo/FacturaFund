@@ -1,0 +1,130 @@
+﻿@using BE
+@using SE
+@model IEnumerable<Customer>
+@{
+    ViewData["Title"] = "Customer Information";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int Totalcount = 0;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="d-md-flex justify-content-between align-items-center">
+            <div>
+                <h2>Customers</h2>
+            </div>
+            <div>
+                <a href="@Url.Action("CustomerDetails", "Customer")" class="btn btn-primary">Add New Customer</a>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="row ">
+    <div class="col-xl-12 col-12">
+        <div class="card h-100 card-lg">
+            <div class="card-body p-0 ">
+
+                <div class="table-responsive">
+                    <table class="table table-centered table-hover table-borderless mb-0 table-with-checkbox text-nowrap">
+                        <thead class="bg-light">
+                            <tr>
+                                <th>Name</th>
+                                <th>Loan Amount</th>
+                                <th>EMI End Date</th>
+                                <th>Balance EMI</th>
+                                <th>View Files</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                if (Model != null && Model.Count() > 0)
+                                {
+                                    Totalcount = Model.Count();
+                                    foreach (var customer in Model)
+                                    {
+                                        <tr>
+                                            <td>@customer.FirstName</td>
+                                            <td>@customer.LoanAmount</td>
+                                            <td>@customer.Email</td>
+                                            <td>@customer.Mobile1</td>
+                                            <td>
+                                                <i class="bi bi-person-vcard-fill text-primary view-btn" data-filename="@Secure.EnCrypt(customer.Aadhaar)" data-customerid="@Secure.EnCrypt(customer.Id)" style="font-size:22px;cursor:pointer;" title="Aadhaar"></i>
+                                                <i class="bi bi-bank2 text-primary view-btn" data-filename="@Secure.EnCrypt(customer.BankPassBook)" data-customerid="@Secure.EnCrypt(customer.Id)" style="font-size:22px;cursor:pointer;" title="Bank Passbook"></i>
+                                                <i class="bi bi-vector-pen text-primary view-btn" data-filename="@Secure.EnCrypt(customer.Singnature)" data-customerid="@Secure.EnCrypt(customer.Id)" style="font-size:22px;cursor:pointer;" title="Signature"></i>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td class="text-center text-danger" colspan="4">There is no Data...</td>
+                                    </tr>
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div class="border-top d-md-flex justify-content-between align-items-center p-6">
+                    <span>Total <span>@Totalcount</span> entries</span>
+                    <nav class="mt-2 mt-md-0">
+                        <ul class="pagination mb-0 ">
+                            <li class="page-item disabled"><a class="page-link" href="#!">Previous</a></li>
+                            <li class="page-item"><a class="page-link active" href="#!">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#!">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#!">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#!">Next</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="fileModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" style="z-index:1;" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">File Preview</h5>
+            </div>
+            <div class="modal-body">
+                <iframe id="fileFrame" style="width:100%; height:450px;" frameborder="0"></iframe>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="clsModal">
+                    Close
+                </button>
+                <a id="linkDownloadFile" class="btn btn-primary"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        $('.view-btn').click(function () {
+            var fileName = $(this).data('filename');
+
+            var customerId = $(this).data('customerid');
+            $('#fileFrame').attr('src', '/Customer/ViewFile?FileName=' + fileName + '&CustomerId=' + customerId);
+            $('#linkDownloadFile').attr('href', '/Customer/DownloadFile?FileName=' + fileName + '&CustomerId=' + customerId);
+            $('#linkDownloadFile').html("Download " + GetFileNameWithoutExtension(atob(fileName)));
+            $('#fileModal').modal('show');
+        });
+
+        $('#clsModal').click(function () {
+            $('#fileFrame').attr('src','');
+            $('#fileModal').modal('hide');
+        });
+    </script>
+}
+
