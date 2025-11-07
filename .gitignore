@@ -1,0 +1,117 @@
+# # Ignore user-specific files
+# *.user
+# *.suo
+# *.userosscache
+# *.sln.docstates
+
+# # Ignore logs and temp files
+# *.log
+# *.tmp
+
+# # Ignore LaTeX and BibTeX files (if applicable)
+# *.aux
+# *.bbl
+# *.blg
+# *.bib
+# *.dll
+
+# # Ignore VS Code and JetBrains IDE settings
+# .vscode/
+# .idea/
+# .vs/
+# bin/
+# obj/
+# **/bin/
+# **/obj/
+# **/debug/
+# debug/
+
+# # Ignore build artifacts
+# *.dll
+# *.exe
+# *.pdb
+# *.txt
+# *.cache.json
+
+
+## Build artifacts
+bin/
+obj/
+**/bin/
+**/obj/
+
+## User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Visual Studio Code
+.vscode/
+.history/
+
+## Rider
+.idea/
+
+## ASP.NET Core secrets
+secrets.json
+*.db
+
+## Logs and temp
+*.log
+*.tmp
+*.bak
+
+## NuGet packages
+*.nupkg
+packages/
+.nuget/
+
+## Entity Framework
+Migrations/
+
+## Docker
+*.pid
+*.seed
+Dockerfile.*
+docker-compose.*
+**/docker-compose.override.yml
+
+## Node.js (if using frontend microservices)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+## Static assets
+dist/
+build/
+wwwroot/
+Properties/
+
+## Configuration
+.env
+.env.*
+
+## Test results
+TestResults/
+coverage/
+
+## OS-specific
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+## Git
+.git/
+.gitignore
+
+## Others
+*.swp
+*.sln.cache
+*.vspscc
+*.vssscc
+
+## IDE folders
+.vs/
+.config/
