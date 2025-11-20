@@ -12,6 +12,8 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+//Gopi
+
 builder.Configuration
     .SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
